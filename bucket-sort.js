@@ -14,18 +14,24 @@
 // arr[0] = small, arr[arr.length-1] = large
 // 
 
+// 0(nk)
 function bucketSort(array, small, large) {
-  const newArr = [];
-  for (let i = 0; i <= large - small; i++) {
-    newArr.push([]);
+  const newArr = []; // 0(1)
+  for (let i = 0; i <= large - small; i++) { // 0(1)
+    newArr.push([]); // makes buckets
   }
 
-  for (let i = 0; i < array.length; i++) {
-    newArr[array[i] - small].push(array[i]); 
-    console.log(newArr);
+  for (let i = 0; i < array.length; i++) { // filling buckets
+    newArr[array[i] - small].push(array[i]); // 0(n)
+    // console.log(newArr);
   }
-
-  return newArr.reduce((acc, val) => acc.concat(val), []);
+  // iterate, spread and push
+  const results = [];
+  for (let i = 0; i < newArr.length; i++) { // 0(n)
+    results.push(...newArr[i]); // emptying buckets
+  }
+  return results;
+  // return newArr.reduce((acc, val) => acc.concat(val), []); // 0(n^2)
   // newArr.length = large - small + 1;
 }
 
