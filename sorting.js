@@ -34,7 +34,32 @@ function quickSort(array, start=0, end=array.length) {
   return array;
 }
 
+function mergeSort(array) {
+  if (array.length === 1) {
+    return array;
+  }
+  const array1 = mergeSort(array.slice(0, Math.floor(array.length/2)));
+  const array2 = mergeSort(array.slice(Math.floor(array.length/2)));
+  // console.log('array1: ', array1, 'array2: ', array2);
+  let currentindex1 = 0;
+  let currentindex2 = 0;
+  const outArray = [];
+  while (currentindex1 !== array1.length || currentindex2 !== array2.length) {
+    if (currentindex2 === array2.length || array1[currentindex1] <= array2[currentindex2]) {
+      outArray.push(array1[currentindex1]);
+      currentindex1 ++;
+    } else {
+      outArray.push(array2[currentindex2]);
+      currentindex2 ++;
+    }
+  }
+  // console.log('outArray: ', outArray);
+  return outArray;
+}
+
 const dataArr = [89, 30, 25, 32, 72, 70, 51, 42, 25, 24, 53, 55, 78, 50, 13, 40, 48, 32, 26, 2, 14, 33, 45, 72, 56, 44, 21, 88, 27, 68, 15, 62, 93, 98, 73, 28, 16, 46, 87, 28, 65, 38, 67, 16, 85, 63, 23, 69, 64, 91, 9, 70, 81, 27, 97, 82, 6, 88, 3, 7, 46, 13, 11, 64, 76, 31, 26, 38, 28, 13, 17, 69, 90, 1, 6, 7, 64, 43, 9, 73, 80, 98, 46, 27, 22, 87, 49, 83, 6, 39, 42, 51, 54, 84, 34, 53, 78, 40, 14, 5];
+let dataArr2 = [89, 30, 25, 32, 72, 70, 51, 42, 25, 24, 53, 55, 78, 50, 13, 40, 48, 32, 26, 2, 14, 33, 45, 72, 56, 44, 21, 88, 27, 68, 15, 62, 93, 98, 73, 28, 16, 46, 87, 28, 65, 38, 67, 16, 85, 63, 23, 69, 64, 91, 9, 70, 81, 27, 97, 82, 6, 88, 3, 7, 46, 13, 11, 64, 76, 31, 26, 38, 28, 13, 17, 69, 90, 1, 6, 7, 64, 43, 9, 73, 80, 98, 46, 27, 22, 87, 49, 83, 6, 39, 42, 51, 54, 84, 34, 53, 78, 40, 14, 5];
 
 quickSort(dataArr);
-console.log(dataArr);
+dataArr2 = mergeSort(dataArr2);
+console.log(dataArr2);
